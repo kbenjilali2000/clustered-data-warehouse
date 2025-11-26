@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: fx-deals-db
+    environment:
+      POSTGRES_DB: fx_deals_db
+      POSTGRES_USER: fxdbuser
+      POSTGRES_PASSWORD: fxdbpass
+    ports:
+      # Host 5433 -> Container 5432 (to avoid conflict with any local Postgres)
+      - "5433:5432"
+    volumes:
+      - fxdeals_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fxdbuser -d fx_deals_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: fx-deals-app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # Override Spring datasource properties for Docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/fx_deals_db
+      SPRING_DATASOURCE_USERNAME: fxdbuser
+      SPRING_DATASOURCE_PASSWORD: fxdbpass
+      # Optional: ensure ddl-auto in Docker
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      # Optional logging override if you want
+      # LOGGING_LEVEL_ROOT: INFO
+    ports:
+      # Host 8080 -> Container 8080
+      - "8080:8080"
+    restart: on-failure
+
+volumes:
+  fxdeals_pgdata:
