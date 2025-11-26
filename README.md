@@ -17,15 +17,15 @@ This project demonstrates strong code architecture, clean separation of concerns
 
 ## Features
 
-| Feature                           | Description                                                                            |
-|-----------------------------------|----------------------------------------------------------------------------------------|
-| **JSON Batch Import**             | `POST /api/deals/import` accepts JSON arrays; validates and imports deals              |
-| **CSV File Import**               | `POST /api/deals/import/csv` accepts multipart CSV; parses, validates, reports errors  |
-| **No Rollback Strategy**          | Each row processed independently in an append-only manner                              |
-| **Idempotency**                   | Duplicate Deal IDs ignored and reported; DB unique constraints enforce                 |
-| **Validation Layers**             | Bean Validation, business logic, CSV parsing checks                                    |
-| **Global Exception Handling**     | @RestControllerAdvice for consistent JSON API error structures                         |
-| **Docker Support (coming)**       | Dockerfile and docker-compose configurations for easy deployment                       |
+| Feature                   | Description                                                               |
+|---------------------------|---------------------------------------------------------------------------|
+| **JSON Batch Import**     | POST `/api/deals/import`—accepts JSON arrays, validates and imports deals |
+| **CSV File Import**       | POST `/api/deals/import/csv`—accepts multipart CSV, parses, reports errors|
+| **No Rollback Strategy**  | Each row is processed and saved independently                             |
+| **Idempotency**           | Duplicate Deal IDs ignored/reported using unique DB constraints           |
+| **Validation Layers**     | Bean Validation, business logic, CSV parsing checks                       |
+| **Global Exception Handling** | Consistent JSON error structures via `@RestControllerAdvice`           |
+| **Docker Deployment**     | Full Dockerfile and docker-compose orchestration (available in `features/dockerisation` branch) |
 
 ---
 
