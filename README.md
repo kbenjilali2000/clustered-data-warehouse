@@ -25,7 +25,7 @@ This project demonstrates strong code architecture, clean separation of concerns
 | **Idempotency**                   | Duplicate Deal IDs ignored and reported; DB unique constraints enforce                 |
 | **Validation Layers**             | Bean Validation, business logic, CSV parsing checks                                    |
 | **Global Exception Handling**     | @RestControllerAdvice for consistent JSON API error structures                         |
-| **Docker Support (coming)**       | Dockerfile and docker-compose configurations for easy deployment                       |
+| **Docker Support**                | Dockerfile and docker-compose configurations for easy deployment                       |
 
 ---
 
