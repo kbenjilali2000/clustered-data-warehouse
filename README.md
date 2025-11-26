@@ -62,7 +62,7 @@ This project demonstrates strong code architecture, clean separation of concerns
 | Maven            | Build automation tool                       |
 | Lombok           | Boilerplate reduction for DTOs & entities   |
 | SLF4J / Logback  | Logging                                     |
-| Docker / Compose | Containerization & service orchestration (planned) |
+| Docker / Compose | Containerization & service orchestration    |
 
 ---
 
