@@ -103,7 +103,7 @@ class DealImportServiceImplTest {
         assertThat(result.getInvalid()).isZero();
         assertThat(result.getErrors()).hasSize(1);
         assertThat(result.getErrors().get(0).getDealUniqueId()).isEqualTo("D-1");
-        assertThat(result.getErrors().get(0).getError())
+        assertThat(result.getErrors().get(0).getMessage())
                 .contains("Duplicate dealUniqueId");
 
         // Only one save (for the first, non-duplicate row)
@@ -131,7 +131,7 @@ class DealImportServiceImplTest {
         assertThat(result.getDuplicates()).isZero();
         assertThat(result.getInvalid()).isEqualTo(1);
         assertThat(result.getErrors()).hasSize(1);
-        assertThat(result.getErrors().get(0).getError())
+        assertThat(result.getErrors().get(0).getMessage())
                 .contains("fromCurrencyIsoCode and toCurrencyIsoCode must be different");
 
         // No save should be called for invalid rows
@@ -157,7 +157,7 @@ class DealImportServiceImplTest {
         assertThat(result.getDuplicates()).isEqualTo(1);
         assertThat(result.getInvalid()).isZero();
         assertThat(result.getErrors()).hasSize(1);
-        assertThat(result.getErrors().get(0).getError())
+        assertThat(result.getErrors().get(0).getMessage())
                 .contains("Duplicate dealUniqueId detected at database level");
     }
 
